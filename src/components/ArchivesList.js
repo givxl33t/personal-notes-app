@@ -1,12 +1,12 @@
 import React from 'react';
 import NoteItem from './NoteItem';
 
-function NoteList({ notes, onDelete, onArchive }) {
-  if (notes.length > 0) {
+function ArchivesList({ archivedNotes, onDelete, onArchive }) {
+  if (archivedNotes.length > 0) {
     return (
       <div className="notes-list">
         {
-          notes.map((note) => (
+          archivedNotes.map((note) => (
           <NoteItem
           key={note.id}
           id={note.id}
@@ -24,4 +24,4 @@ function NoteList({ notes, onDelete, onArchive }) {
   }
 }
 
-export default NoteList;
+export default ArchivesList;
