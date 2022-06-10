@@ -1,4 +1,5 @@
 import React from 'react';
+import autoBindReact from 'auto-bind/react';
 
 class NoteInput extends React.Component {
   constructor(props) {
@@ -9,10 +10,7 @@ class NoteInput extends React.Component {
       title: '',
       body: '',
     }
-
-    this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
-    this.onBodyChangeEventHandler = this.onBodyChangeEventHandler.bind(this);
-    this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
+    autoBindReact(this);
   }
 
   onTitleChangeEventHandler(event) {
@@ -42,7 +40,11 @@ class NoteInput extends React.Component {
 
   onSubmitEventHandler(event) {
     event.preventDefault();
-    this.props.addNote(this.state);
+    if (this.state.title === '' || this.state.body === '') {
+      alert('Please fill all the forms');
+    } else {
+      this.props.addNote(this.state);
+    }
   }
 
   render() {

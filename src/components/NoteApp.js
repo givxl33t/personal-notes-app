@@ -1,4 +1,5 @@
 import React from 'react';
+import autoBindReact from 'auto-bind/react';
 import NoteHeader from './NoteHeader';
 import NoteBody from './NoteBody';
 import { getInitialData } from '../utils/index';
@@ -11,11 +12,7 @@ class NoteApp extends React.Component {
       filteredNotes: getInitialData(),
       searchValue: '',
     }
-
-    this.onDeleteHandler = this.onDeleteHandler.bind(this);
-    this.onArchiveHandler = this.onArchiveHandler.bind(this);
-    this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
-    this.onSearchNoteHandler = this.onSearchNoteHandler.bind(this);
+    autoBindReact(this);
   }
 
   onDeleteHandler(id) {
