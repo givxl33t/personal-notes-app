@@ -1,4 +1,3 @@
-import autoBindReact from 'auto-bind/react';
 import React from 'react';
 import NoteHeader from './NoteHeader';
 import NoteBody from './NoteBody';
@@ -12,7 +11,11 @@ class NoteApp extends React.Component {
       filteredNotes: getInitialData(),
       searchValue: '',
     }
-    autoBindReact(this);
+
+    this.onDeleteHandler = this.onDeleteHandler.bind(this);
+    this.onArchiveHandler = this.onArchiveHandler.bind(this);
+    this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
+    this.onSearchNoteHandler = this.onSearchNoteHandler.bind(this);
   }
 
   onDeleteHandler(id) {
@@ -60,7 +63,6 @@ class NoteApp extends React.Component {
 
   onSearchNoteHandler(event) {
     const searchValue = event.target.value.toLowerCase();
-    // eslint-disable-next-line array-callback-return
     const searchedNote = this.state.notes.filter((note) => {
       if (searchValue === '') {
         return note;
@@ -68,6 +70,7 @@ class NoteApp extends React.Component {
         return note;
       }
     });
+
     this.setState({ filteredNotes: searchedNote, searchValue });
   }
 
